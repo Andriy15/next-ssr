@@ -17,7 +17,7 @@ export default function Chat() {
     })
 
     return () => unsubscribe();
-  }, []);
+  }, [])
 
   const handleSendMessage = async () => {
     if (newMessage.trim() === '') return;
@@ -35,24 +35,32 @@ export default function Chat() {
   return (
     <>
         {!user ? (
-            <div className="text-center">You must be logged in</div>
+            <div className="text-center">You must be logged in to be in chat</div>
         ) : (
             <div className="flex flex-col">
                 <div className="flex-1 overflow-y-auto px-4 py-6">
                     {messages.map((message, index) => (
                     <div
                         key={index}
-                        className={`p-2 rounded-lg mb-2 w-[1000px] ${
+                        className={`p-2 rounded-lg mb-2 flex flex-col ${
                         message.userId === user.uid
                             ? 'bg-blue-500 text-white self-end'
                             : 'bg-gray-200 text-gray-700 self-start'
                         }`}
                     >
+                        <div>
+                          <div className='text-bold'>
+                            {user?.displayName}
+                          </div>
+                          <div className='text-gray-400'>
+                            {new Date(message.timestamp?.toDate()).toLocaleString()}
+                          </div>  
+                        </div> 
                         {message.text}
                     </div>
                     ))}
                 </div>
-                <div className="p-4 border-t w-[1000px]">
+                <div className="p-4 border-t">
                     <div className="flex">
                     <textarea
                         className="flex-1 border rounded-lg p-2 mr-2 resize-none"
