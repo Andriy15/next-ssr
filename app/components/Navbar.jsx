@@ -21,7 +21,7 @@ export default function Navbar() {
                     <Link href="/">Home</Link>
                 </li>
                 <li className="p-2 cursor-pointer">
-                    <Link href="/about">About</Link>
+                    <Link href="/chat">Chat</Link>
                 </li>
                 <li className="p-2 cursor-pointer">
                     <Link href="/profile">Profile</Link>
