@@ -465,6 +465,14 @@ function Chat() {
             userId: user.uid,
             timestamp: (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__/* .serverTimestamp */ .Bt)()
         });
+        setMessages([
+            {
+                text: newMessage,
+                userId: user.uid,
+                timestamp: new Date()
+            },
+            ...messages
+        ]);
         setNewMessage("");
     };
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
@@ -486,8 +494,8 @@ function Chat() {
                                             children: user?.displayName
                                         }),
                                         /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            className: "text-gray-400",
-                                            children: new Date(message.timestamp?.toDate()).toLocaleString()
+                                            className: "text-gray-400 text-right",
+                                            children: message.timestamp ? new Date(message.timestamp.seconds * 1000).toLocaleTimeString() : ""
                                         })
                                     ]
                                 }),

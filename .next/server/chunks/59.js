@@ -35,19 +35,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1440);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _context_AuthContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7495);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8038);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* __next_internal_client_entry_do_not_use__ default auto */ 
+
 
 
 function Navbar() {
     const { user, signInWithGoogle, logOut } = (0,_context_AuthContext__WEBPACK_IMPORTED_MODULE_2__.useAuth)();
+    const [theme, setTheme] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)("light");
     const handleLogin = ()=>{
         signInWithGoogle();
     };
     const handleLogout = async ()=>{
         logOut();
     };
+    const toggleTheme = ()=>{
+        if (theme === "light") {
+            setTheme("dark");
+            document.documentElement.classList.add("dark");
+        } else {
+            setTheme("light");
+            document.documentElement.classList.remove("dark");
+        }
+    };
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "h-20 w-full border b-2 flex items-center justify-between p-2",
+        className: "h-20 w-full border-b-2 flex items-center justify-between p-2",
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
                 className: "flex",
@@ -72,6 +85,11 @@ function Navbar() {
                             href: "/profile",
                             children: "Profile"
                         })
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                        className: "p-2 cursor-pointer",
+                        onClick: toggleTheme,
+                        children: theme === "light" ? "Dark" : "Light"
                     })
                 ]
             }),
